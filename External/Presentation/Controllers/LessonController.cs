@@ -1,4 +1,4 @@
-﻿using Domain;
+﻿using Domain.LessonBoundary;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers;
@@ -20,7 +20,7 @@ public class LessonController : ControllerBase
         return lesson;
     }
 
-    [HttpPost("post")]
+    [HttpPost]
     public IActionResult Post(Request request)
     {
         return Ok(request);
@@ -40,3 +40,10 @@ public class Request
 // Создать объект и вызвать методы
 // Максимально прочитать метанит
 // Внутри объекта Анимал в методах (функциях) прописать логику работы с данными (входящие параметры)
+
+
+// Open Git Bach
+// git config --global user.name "Ernur Bauyrzhan"
+// git config --global user.email "ernurbauyrzhan@gmail.com"
+
+// Open VS 2022 ->  Clone Repository -> https://github.com/ebaurzhanoff/EnglishApp.git

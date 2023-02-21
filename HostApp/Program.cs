@@ -1,18 +1,37 @@
+using Application;
+using HostApp.Configurations;
+using HostApp.Middleware;
+using HostApp.Seeder;
+using Infrastructure;
+using Infrastructure.Identity;
+using Presentation;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var presentationAssembly = typeof(Presentation.AssemblyReference).Assembly;
+builder.Services.AddApplication(builder.Configuration);
+builder.Services.AddPresentation(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddIdentityInfrastructure(builder.Configuration);
+builder.Services.AddCommon(builder.Configuration);
 
 builder.Services.AddControllers()
-        .AddApplicationPart(presentationAssembly)
+        .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
         .AddControllersAsServices();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    await Seeder.Start(scope.ServiceProvider);
+}
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseCors("CORS_Policy");
+app.UseForwardedHeaders();
 app.UseSwagger();
 app.UseSwaggerUI();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();
