@@ -1,7 +1,6 @@
 ﻿using Application.Services;
 using Application.Settings;
 using Application.Wrappers;
-using Azure;
 using Infrastructure.Identity.Models;
 using Infrastructure.Identity.Persistence;
 using Infrastructure.Identity.Services;
@@ -22,7 +21,7 @@ public static class ConfigurationExtension
     public static void AddIdentityInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<IdentityContext>(options =>
-                   options.UseSqlServer(
+                   options.UseNpgsql(
                        configuration.GetConnectionString("IdentityConnection"),
                        b => b.MigrationsAssembly(typeof(IdentityContext).Assembly.FullName)));
 

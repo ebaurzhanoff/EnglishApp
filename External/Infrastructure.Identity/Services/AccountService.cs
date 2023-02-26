@@ -61,9 +61,9 @@ public class AccountService : IAccountService
             throw new Exception("Аккаунт с такой почтой был удален.");
         }
 
-        var result = await _signInManager.PasswordSignInAsync(user.UserName, request.Password, false, lockoutOnFailure: false);
+        var result = await _signInManager.PasswordSignInAsync(user.UserName!, request.Password, false, lockoutOnFailure: false);
         
-        if (!result.Succeeded)
+        if (result.Succeeded == false)
         {
             throw new Exception("Неправильно введена почта или пароль.");
         }
@@ -72,7 +72,7 @@ public class AccountService : IAccountService
         {
             Id = user.Id,
             Email = user.Email!,
-            UserName = user.UserName,
+            UserName = user.UserName!,
         };
 
         var rolesList = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
