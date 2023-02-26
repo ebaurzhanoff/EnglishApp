@@ -15,9 +15,9 @@ public record class Result<T>
         Message = message;
     }
 
-    public static Result<string> Failure(string message)
+    public static Result<T> Failure(string message)
     {
-        return new Result<string>(message);
+        return new Result<T>(message);
     }
 
     public static Result<T> Failure(T errors)

@@ -1,7 +1,10 @@
 ﻿using Application.Handlers.User;
 using Application.Services;
+using Application.Wrappers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace Presentation.Controllers;
 
@@ -17,12 +20,6 @@ public class AccountController : ControllerBase
         _accountService = accountService;
     }
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginRequest request)
-    {
-        return Ok(await _accountService.LoginAsync(request));
-    }
-
     [HttpGet("current-user")]
     public async Task<IActionResult> GetCurrentUser()
     {
@@ -30,9 +27,27 @@ public class AccountController : ControllerBase
         return Ok(user);
     }
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+    [HttpPost, AllowAnonymous]
+    [Route("login")]
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Result<string>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Login(LoginRequest request)
     {
-        return Ok(await _accountService.RegisterAsync(request));
+        var respone = await _accountService.LoginAsync(request);
+        return respone.Succeeded ? Ok(respone) : BadRequest(respone);
+    }
+
+    [HttpPost, AllowAnonymous]
+    [Route("register")]
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(Result<string>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Register(RegisterRequest request)
+    {
+        var respone = await _accountService.RegisterAsync(request);
+        return respone.Succeeded ? Created("register", respone) : BadRequest(respone);
     }
 }

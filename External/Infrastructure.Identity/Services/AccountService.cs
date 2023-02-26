@@ -51,22 +51,12 @@ public class AccountService : IAccountService
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
 
-        if (user == null)
-        {
-            throw new Exception("Неправильно введена почта или пароль.");
-        }
-
-        if (user.IsDeleted)
-        {
-            throw new Exception("Аккаунт с такой почтой был удален.");
-        }
+        if (user == null) return Result<LoginResponse>.Failure("Неправильно введена почта или пароль.");
+        if (user.IsDeleted) return Result<LoginResponse>.Failure("Аккаунт с такой почтой был удален.");
 
         var result = await _signInManager.PasswordSignInAsync(user.UserName!, request.Password, false, lockoutOnFailure: false);
         
-        if (result.Succeeded == false)
-        {
-            throw new Exception("Неправильно введена почта или пароль.");
-        }
+        if (!result.Succeeded) return Result<LoginResponse>.Failure("Неправильно введена почта или пароль.");
 
         LoginResponse response = new()
         {
@@ -90,9 +80,7 @@ public class AccountService : IAccountService
         var userWithSameUserName = await _userManager.FindByNameAsync(request.UserName);
 
         if (userWithSameUserName is not null && !userWithSameUserName.IsDeleted)
-        {
-            Result<string>.Failure("Пользователь с таким логином уже существует");
-        }
+            return Result<string>.Failure("Пользователь с таким логином уже существует");
 
         var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
 
@@ -114,7 +102,7 @@ public class AccountService : IAccountService
                 return Result<string>.Success(user.Id);
             }
 
-            return Result<string>.Failure(string.Join("\n",result.Errors));
+            return Result<string>.Failure(string.Join(" ", result.Errors.Select(x => x.Description).ToList());
         }
 
         return Result<string>.Failure("Пользователь с такой почтой уже существует");
