@@ -102,7 +102,7 @@ public class AccountService : IAccountService
                 return Result<string>.Success(user.Id);
             }
 
-            return Result<string>.Failure(string.Join(" ", result.Errors.Select(x => x.Description).ToList());
+            return Result<string>.Failure(string.Join(" ", result.Errors.Select(x => x.Description).ToList()));
         }
 
         return Result<string>.Failure("Пользователь с такой почтой уже существует");

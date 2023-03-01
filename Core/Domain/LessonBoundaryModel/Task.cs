@@ -1,8 +1,9 @@
-﻿namespace Domain.LessonBoundary;
+﻿using Domain.Common;
 
-public class Task
+namespace Domain.LessonBoundaryModel;
+
+public class UnitTask : Entity
 {
-    public long Id { get; set; }
     public string Title { get; set; } = null!;
     public string? Text { get; set; }
     public string? ImageUrl { get; set; }

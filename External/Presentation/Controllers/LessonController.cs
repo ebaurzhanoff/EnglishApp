@@ -1,4 +1,4 @@
-﻿using Domain.LessonBoundary;
+﻿using Domain.LessonBoundaryModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers;

@@ -7,9 +7,7 @@ namespace Infrastructure.Identity.Persistence;
 
 public class IdentityContext : IdentityDbContext
 {
-    public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
-    {
-    }
+    public IdentityContext(DbContextOptions<IdentityContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
