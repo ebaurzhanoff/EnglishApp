@@ -47,6 +47,14 @@ public static class ConfigurationExtension
             });
         });
 
+        services.AddCors(options =>
+        {
+            options.AddPolicy("CORS_Policy", builder =>
+            {
+                builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+            });
+        });
+
         services.Configure<ApiBehaviorOptions>(options =>
                 options.SuppressModelStateInvalidFilter = true
                 );

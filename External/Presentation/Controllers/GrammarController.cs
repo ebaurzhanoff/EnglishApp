@@ -1,12 +1,10 @@
-﻿using Application.Handlers.Grammar.Command.CreateGrammar;
+﻿using Application.Handlers.GrammarRequest.Command.CreateGrammar;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers;
 
 [ApiController]
-[Authorize]
 [Route("api/[controller]")]
 public class GrammarController : ControllerBase
 {

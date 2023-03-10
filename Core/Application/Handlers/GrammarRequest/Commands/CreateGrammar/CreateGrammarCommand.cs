@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Application.Handlers.Grammar.Command.CreateGrammar;
+namespace Application.Handlers.GrammarRequest.Command.CreateGrammar;
 
 public class CreateGrammarCommand : IRequest<Guid>
 {

@@ -2,6 +2,7 @@
 using Domain.CourseBoundaryModel;
 using Domain.LessonBoundaryModel;
 using Infrastructure.Data;
+using Infrastructure.Data.Groups;
 using Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         builder.HasDefaultSchema("application");
 
         builder.ApplyConfigurationsFromAssembly(typeof(AssemblyReference).Assembly)
-            .SeedEntity<Course>(typeof(Courses));
+            .SeedEntity<Course>(typeof(Courses))
+            .SeedEntity<Group>(typeof(GrammarGroups));
     }
 }
