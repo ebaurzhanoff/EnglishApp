@@ -20,6 +20,8 @@
 
   <ItemGroup>
     <Folder Include="Handlers\CourseRequest\Commands\" />
+    <Folder Include="Handlers\GroupRequest\Commands\" />
+    <Folder Include="Handlers\LessonRequest\Commands\" />
   </ItemGroup>
 
 </Project>

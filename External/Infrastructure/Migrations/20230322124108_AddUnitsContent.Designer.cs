@@ -2,6 +2,7 @@
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230322124108_AddUnitsContent")]
+    partial class AddUnitsContent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -319,22 +322,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("LessonId");
 
                     b.ToTable("Units", "application");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1L,
-                            LessonId = 1L,
-                            SortOrder = 1,
-                            Title = "Present simple “to be”"
-                        },
-                        new
-                        {
-                            Id = 2L,
-                            LessonId = 1L,
-                            SortOrder = 2,
-                            Title = "Present simple “do/does”"
-                        });
                 });
 
             modelBuilder.Entity("Domain.CourseBoundaryModel.Group", b =>
@@ -394,78 +381,6 @@ namespace Infrastructure.Migrations
 
                             b1.WithOwner()
                                 .HasForeignKey("UnitId");
-
-                            b1.HasData(
-                                new
-                                {
-                                    Id = 1L,
-                                    Content = "Как переводится to be и когда используется?\r\n\r\n    'Be' мы используем в 3 случаях, когда мы хотим сказать:\r\n        Кто/что кем/чем является (она медсестра);\r\n        Кто/что каким является (мой кот серый);\r\n        Кто/что где находится (папа на работе).\r\n\r\n    То есть если мы хотим описать местоположение чего-либо, состояние чего-либо или то, чем является этот предмет/человек, то мы используем глагол to be.",
-                                    SortOrder = 1,
-                                    UnitId = 1L
-                                },
-                                new
-                                {
-                                    Id = 2L,
-                                    Content = "Важно знать, как глагол to be меняется в зависимости от того, кто производит действие. Это можете быть вы, ваш друг или группа людей. В настоящем времени этот глагол имеет три формы: am, is, are. ",
-                                    SortOrder = 2,
-                                    UnitId = 1L
-                                },
-                                new
-                                {
-                                    Id = 3L,
-                                    Content = "Давайте рассмотрим примеры употребления. ",
-                                    SortOrder = 3,
-                                    UnitId = 1L
-                                },
-                                new
-                                {
-                                    Id = 4L,
-                                    Content = " Единственное число\r\n    I am a doctor. Я являюсь доктором.\r\n    He is clever. Он является умным.\r\n    She is at home. Она находится дома.\r\n    It is an interesting book. Это есть интересная книга.\r\n    You are a smart guy. Ты являешься сообразительным парнем.",
-                                    SortOrder = 4,
-                                    UnitId = 1L
-                                },
-                                new
-                                {
-                                    Id = 5L,
-                                    Content = " Множественное число \r\n    We are good singers. Мы являемся хорошими певцами. \r\n    You are wonderful listeners. Вы являетесь отличными слушателями. \r\n    They are in the room. Они находятся в комнате.",
-                                    SortOrder = 5,
-                                    UnitId = 1L
-                                },
-                                new
-                                {
-                                    Id = 6L,
-                                    Content = "Present simple - это простое настоящее время, оно употребляется когда говорим о действиях которые мы делаем регулярно, каждый или часто. Одним словом это действия который не заканчивается.",
-                                    SortOrder = 1,
-                                    UnitId = 2L
-                                },
-                                new
-                                {
-                                    Id = 7L,
-                                    Content = "I go to work/university every day \r\n\r\nТакже оно употребляется, когда мы говорим про факты в настоящем.\r\n\r\nI like pizza/sushi",
-                                    SortOrder = 2,
-                                    UnitId = 2L
-                                },
-                                new
-                                {
-                                    Id = 8L,
-                                    Content = "Конструкция предложений в present simple \r\n\r\n    Subject + Verb\r\n    You like ice cream\r\n\r\n    He / She / It + Verb(s)\r\n    He likes ice cream",
-                                    SortOrder = 3,
-                                    UnitId = 2L
-                                },
-                                new
-                                {
-                                    Id = 9L,
-                                    Content = "В отрицательных предложениях\r\n\r\n    do + not - don’t\r\n    does + not - doesn’t\r\n\r\n    Subject + don’t/doesn’t + Verb\r\n\r\n    I don’t like ice cream \r\n    She doesn’t go to school",
-                                    SortOrder = 4,
-                                    UnitId = 2L
-                                },
-                                new
-                                {
-                                    Id = 10L,
-                                    Content = "Чтобы сделать вопросительное предложение \r\n\r\n    Do/ Does + Subject + Verb \r\n\r\n    Do you go to university?\r\n    Yes, I do \r\n    No, I don’t \r\n\r\n    Does he go swimming? \r\n    Yes, he does\r\n    No, he doesn’t",
-                                    SortOrder = 5,
-                                    UnitId = 2L
-                                });
                         });
 
                     b.OwnsOne("Domain.LessonBoundaryModel.UnitTask", "Task", b1 =>

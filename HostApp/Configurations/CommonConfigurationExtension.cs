@@ -51,7 +51,7 @@ public static class ConfigurationExtension
         {
             options.AddPolicy("CORS_Policy", builder =>
             {
-                builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                builder.SetIsOriginAllowed(origin => true).AllowCredentials().AllowAnyHeader().AllowAnyMethod();
             });
         });
 

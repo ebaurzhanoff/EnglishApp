@@ -1,5 +1,7 @@
 ﻿using Domain.Common;
+using Domain.LessonBoundaryModel;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Infrastructure.Extensions;
@@ -25,6 +27,16 @@ public static class EntitySeeder
             .ToArray();
 
         builder.Entity<T>().HasData(entities);
+        return builder;
+    }
+
+    public static ModelBuilder SeedUnitOwnsMany(this ModelBuilder builder, Type type)
+    {
+        var entities = type.GetFields(BindingFlags.Public | BindingFlags.Static)
+            .Select(field => (Source)field.GetValue(null)!)
+            .ToArray();
+
+        builder.Entity<Unit>().OwnsMany(x => x.Sources).HasData(entities);
         return builder;
     }
 }

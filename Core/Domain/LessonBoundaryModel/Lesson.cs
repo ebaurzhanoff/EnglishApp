@@ -8,6 +8,7 @@ public class Lesson : Entity, ISortable
     public string GroupToken { get; set; } = null!;
     public string Title { get; set; } = null!;
     public string Description { get; set; } = null!;
-
+    public long LevelId { get; set; }
+    public Level Level { get; set; } = null!;
     public List<Unit> Units { get; set; } = null!;
 }

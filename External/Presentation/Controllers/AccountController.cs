@@ -8,9 +8,8 @@ using System.Net.Mime;
 
 namespace Presentation.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
-[AllowAnonymous]
+[Route("api/[controller]")]
 public class AccountController : ControllerBase
 {
     private readonly IAccountService _accountService;
@@ -21,10 +20,12 @@ public class AccountController : ControllerBase
     }
 
     [HttpGet("current-user")]
-    public async Task<IActionResult> GetCurrentUser()
+    [ProducesResponseType(typeof(UserDto), StatusCodes.Status200OK)]
+    [Produces(MediaTypeNames.Application.Json)]
+    public async Task<IResult> GetCurrentUser()
     {
         var user = await _accountService.GetCurrentUser();
-        return Ok(user);
+        return TypedResults.Ok(user);
     }
 
     [HttpPost, AllowAnonymous]
@@ -33,10 +34,11 @@ public class AccountController : ControllerBase
     [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(Result<string>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> Login(LoginRequest request)
+    public async Task<IResult> Login(LoginRequest request)
     {
         var respone = await _accountService.LoginAsync(request);
-        return respone.Succeeded ? Ok(respone) : BadRequest(respone);
+
+        return respone.Succeeded ? TypedResults.Ok(respone) : TypedResults.BadRequest(respone);
     }
 
     [HttpPost, AllowAnonymous]
@@ -45,9 +47,9 @@ public class AccountController : ControllerBase
     [ProducesResponseType(typeof(LoginResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(Result<string>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> Register(RegisterRequest request)
+    public async Task<IResult> Register(RegisterRequest request)
     {
         var respone = await _accountService.RegisterAsync(request);
-        return respone.Succeeded ? Created("register", respone) : BadRequest(respone);
+        return respone.Succeeded ? TypedResults.Created("register", respone) : TypedResults.BadRequest(respone);
     }
 }

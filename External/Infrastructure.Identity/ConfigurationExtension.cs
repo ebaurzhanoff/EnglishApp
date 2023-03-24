@@ -5,11 +5,13 @@ using Infrastructure.Identity.Models;
 using Infrastructure.Identity.Persistence;
 using Infrastructure.Identity.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.Text;
@@ -40,15 +42,30 @@ public static class ConfigurationExtension
         services.AddTransient<IAuthenticatedUserService, AuthenticatedUserService>();
         services.AddTransient<IJwtTokenGenerator, JwtTokenGenerator>();
 
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("User", new AuthorizationPolicyBuilder()
+                .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                .RequireAuthenticatedUser()
+                .Build());
+
+            options.AddPolicy("Admin", new AuthorizationPolicyBuilder()
+                .RequireRole("Admin")
+                .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                .RequireAuthenticatedUser()
+                .Build());
+        });
+
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
         })
         .AddJwtBearer(o =>
         {
             o.RequireHttpsMetadata = false;
-            o.SaveToken = false;
+            o.SaveToken = true;
             o.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
@@ -64,19 +81,20 @@ public static class ConfigurationExtension
             {
                 OnAuthenticationFailed = c =>
                 {
-                    c.Response.OnStarting(async () => {
+                    c.Response.OnStarting(async () =>
+                    {
                         c.NoResult();
                         c.Response.StatusCode = StatusCodes.Status401Unauthorized;
                         c.Response.ContentType = "application/json";
 
                         var result = JsonConvert.SerializeObject(Result<string>.Failure("Предоставленный токен доступа недействителен."));
-                        
+
                         if (c.Exception.GetType() == typeof(SecurityTokenExpiredException))
                         {
                             c.Response.Headers.Add("Token-Expired", "true");
                             result = JsonConvert.SerializeObject(Result<string>.Failure("Срок действия предоставленного токена доступа истек."));
                         }
-                        
+
                         await c.Response.WriteAsync(result);
                     });
 

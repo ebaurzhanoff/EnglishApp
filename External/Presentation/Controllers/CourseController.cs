@@ -1,12 +1,13 @@
 ﻿using Application.Handlers.CourseRequest.Queries.GetAll;
-using Application.Handlers.GrammarRequest.Command.CreateGrammar;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace Presentation.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
 public class CourseController : ControllerBase
 {
     private readonly ISender _sender;
@@ -17,8 +18,11 @@ public class CourseController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    [Produces(MediaTypeNames.Application.Json)]
+    [ProducesResponseType(typeof(List<CourseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IResult> GetAll()
     {
-        return Ok(await _sender.Send(new GetAllCourseQuery()));
+        return TypedResults.Ok(await _sender.Send(new GetCoursesQuery()));
     }
 }
