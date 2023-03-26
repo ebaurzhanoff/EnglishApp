@@ -1,4 +1,4 @@
-﻿using Application.Handlers.GroupRequest.Quieries.GetAll;
+﻿using Application.Handlers.GroupRequest.Queries.GetAll;
 using Application.Mappings;
 using AutoMapper;
 using Domain.CourseBoundaryModel;

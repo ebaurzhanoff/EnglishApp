@@ -6,6 +6,7 @@ namespace Application.Handlers.LessonRequest.Queries.GetAll;
 
 public class LessonDto : IMapFrom<Lesson>
 {
+    public long Id { get; set; }
     public int SortOrder { get; set; }
     public string Title { get; set; } = null!;
     public string Description { get; set; } = null!;

@@ -22,6 +22,7 @@
     <Folder Include="Handlers\CourseRequest\Commands\" />
     <Folder Include="Handlers\GroupRequest\Commands\" />
     <Folder Include="Handlers\LessonRequest\Commands\" />
+    <Folder Include="Handlers\UnitRequest\Commands\" />
   </ItemGroup>
 
 </Project>

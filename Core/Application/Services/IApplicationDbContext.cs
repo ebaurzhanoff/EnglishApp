@@ -13,4 +13,5 @@ public interface IApplicationDbContext
     DbSet<Unit> Units { get; set; }
     DbSet<Source> Sources { get; set; }
     DbSet<UnitTask> Tasks { get; set; }
+    DbSet<Level> Levels { get; set; }
 }

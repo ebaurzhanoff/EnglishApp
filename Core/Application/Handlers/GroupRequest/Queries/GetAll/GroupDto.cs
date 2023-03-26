@@ -2,7 +2,7 @@
 using AutoMapper;
 using Domain.CourseBoundaryModel;
 
-namespace Application.Handlers.GroupRequest.Quieries.GetAll;
+namespace Application.Handlers.GroupRequest.Queries.GetAll;
 
 public class GroupDto : IMapFrom<Group>
 {

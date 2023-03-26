@@ -21,11 +21,13 @@ sealed class GetLessonsQueryHandler : IRequestHandler<GetLessonsQuery, List<Less
 
     public async Task<List<LessonDto>> Handle(GetLessonsQuery request, CancellationToken cancellationToken)
     {
-        return await _context.Lessons
+        var result = await _context.Lessons
             .Include(x => x.Level)
             .Where(x => x.GroupToken == request.GroupToken)
             .OrderBy(x => x.SortOrder)
             .ProjectTo<LessonDto>(_mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
+
+        return result;
     }
 }

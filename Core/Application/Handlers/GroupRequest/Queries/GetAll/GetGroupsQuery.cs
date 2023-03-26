@@ -4,7 +4,7 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Handlers.GroupRequest.Quieries.GetAll;
+namespace Application.Handlers.GroupRequest.Queries.GetAll;
 
 public record class GetGroupsQuery(long? CourseId) : IRequest<List<GroupDto>>;
 

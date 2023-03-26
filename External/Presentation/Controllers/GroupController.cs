@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using System.Net.Mime;
-using Application.Handlers.GroupRequest.Quieries.GetAll;
+using Application.Handlers.GroupRequest.Queries.GetAll;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
