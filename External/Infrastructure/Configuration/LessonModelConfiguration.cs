@@ -1,6 +1,7 @@
 ﻿using Domain.LessonBoundaryModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Infrastructure.Configuration;
 
@@ -49,6 +50,8 @@ public class UnitModelConfiguration : IEntityTypeConfiguration<Unit>
         builder.OwnsMany(u => u.Sources, s =>
         {
             s.HasKey(x => x.Id);
+            s.Property(x => x.Id);
+
             s.WithOwner().HasForeignKey(s => s.UnitId);
             s.Property(x => x.UnitId);
             s.Property(x => x.Content).HasMaxLength(4096).IsRequired();

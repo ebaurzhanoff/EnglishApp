@@ -2,7 +2,7 @@
 
 namespace Domain.LessonBoundaryModel;
 
-public class Source : Entity, ISortable
+public class Source : EntityGuid, ISortable
 {
     public long UnitId { get; set; }
     public int SortOrder { get; set; }

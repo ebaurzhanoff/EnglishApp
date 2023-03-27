@@ -7,7 +7,6 @@ using Infrastructure.Data.Lessons;
 using Infrastructure.Data.Units;
 using Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 namespace Infrastructure.Persistence;
 
@@ -33,9 +32,10 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             .SeedEntity<Course>(typeof(Courses))
             .SeedEntity<Group>(typeof(GrammarGroups))
             .SeedEntity<Level>(typeof(Levels))
-            .SeedEntity<Lesson>(typeof(PresentSimpleLessons))
-            .SeedEntity<Unit>(typeof(PresentSimpleUnits))
+            .SeedEntity<Lesson>(typeof(GrammarLessons))
+            .SeedEntity<Unit>(typeof(GrammarUnits))
             .SeedUnitOwnsMany(typeof(PresentSimpleUnitSources))
+            .SeedUnitOwnsMany(typeof(PresentContinuousUnitSources))
             ;
     }
 }

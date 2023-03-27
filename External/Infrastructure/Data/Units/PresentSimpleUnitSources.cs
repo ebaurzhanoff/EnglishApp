@@ -7,8 +7,8 @@ public static class PresentSimpleUnitSources
     #region ToBe
     public static readonly Source Source_ToBe_1 = new()
     {
-        Id = 1,
-        UnitId = PresentSimpleUnits.ToBe.Id,
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.ToBe.Id,
         Content = @"Как переводится to be и когда используется?
 
     'Be' мы используем в 3 случаях, когда мы хотим сказать:
@@ -21,22 +21,22 @@ public static class PresentSimpleUnitSources
     };
     public static readonly Source Source_ToBe_2 = new()
     {
-        Id = 2,
-        UnitId = PresentSimpleUnits.ToBe.Id,
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.ToBe.Id,
         Content = "Важно знать, как глагол to be меняется в зависимости от того, кто производит действие. Это можете быть вы, ваш друг или группа людей. В настоящем времени этот глагол имеет три формы: am, is, are. ",
         SortOrder = 2
     };
     public static readonly Source Source_ToBe_3 = new()
     {
-        Id = 3,
-        UnitId = PresentSimpleUnits.ToBe.Id,
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.ToBe.Id,
         Content = "Давайте рассмотрим примеры употребления. ",
         SortOrder = 3
     };
     public static readonly Source Source_ToBe_4 = new()
     {
-        Id = 4,
-        UnitId = PresentSimpleUnits.ToBe.Id,
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.ToBe.Id,
         Content = @" Единственное число
     I am a doctor. Я являюсь доктором.
     He is clever. Он является умным.
@@ -47,8 +47,8 @@ public static class PresentSimpleUnitSources
     };
     public static readonly Source Source_ToBe_5 = new()
     {
-        Id = 5,
-        UnitId = PresentSimpleUnits.ToBe.Id,
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.ToBe.Id,
         Content = @" Множественное число 
     We are good singers. Мы являемся хорошими певцами. 
     You are wonderful listeners. Вы являетесь отличными слушателями. 
@@ -60,15 +60,15 @@ public static class PresentSimpleUnitSources
     #region DoDoes
     public static readonly Source Source_DoDoes_1 = new()
     {
-        Id = 6,
-        UnitId = PresentSimpleUnits.DoDoes.Id,
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.DoDoes.Id,
         Content = "Present simple - это простое настоящее время, оно употребляется когда говорим о действиях которые мы делаем регулярно, каждый или часто. Одним словом это действия который не заканчивается.",
         SortOrder = 1
     };
     public static readonly Source Source_DoDoes_2 = new()
     {
-        Id = 7,
-        UnitId = PresentSimpleUnits.DoDoes.Id,
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.DoDoes.Id,
         Content = @"I go to work/university every day 
 
 Также оно употребляется, когда мы говорим про факты в настоящем.
@@ -78,8 +78,8 @@ I like pizza/sushi",
     };
     public static readonly Source Source_DoDoes_3 = new()
     {
-        Id = 8,
-        UnitId = PresentSimpleUnits.DoDoes.Id,
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.DoDoes.Id,
         Content = @"Конструкция предложений в present simple 
 
     Subject + Verb
@@ -91,8 +91,8 @@ I like pizza/sushi",
     };
     public static readonly Source Source_DoDoes_4 = new()
     {
-        Id = 9,
-        UnitId = PresentSimpleUnits.DoDoes.Id,
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.DoDoes.Id,
         Content = @"В отрицательных предложениях
 
     do + not - don’t
@@ -106,8 +106,8 @@ I like pizza/sushi",
     };
     public static readonly Source Source_DoDoes_5 = new()
     {
-        Id = 10,
-        UnitId = PresentSimpleUnits.DoDoes.Id,
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.DoDoes.Id,
         Content = @"Чтобы сделать вопросительное предложение 
 
     Do/ Does + Subject + Verb 
