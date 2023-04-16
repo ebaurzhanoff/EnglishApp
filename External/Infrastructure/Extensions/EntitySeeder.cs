@@ -39,4 +39,14 @@ public static class EntitySeeder
         builder.Entity<Unit>().OwnsMany(x => x.Sources).HasData(entities);
         return builder;
     }
+
+    public static ModelBuilder SeedUnitTaskOwnsMany(this ModelBuilder builder, Type type)
+    {
+        var entities = type.GetFields(BindingFlags.Public | BindingFlags.Static)
+            .Select(field => (UnitTaskSource)field.GetValue(null)!)
+            .ToArray();
+
+        builder.Entity<UnitTask>().OwnsMany(x => x.Sources).HasData(entities);
+        return builder;
+    }
 }

@@ -23,7 +23,8 @@ sealed class GetUnitsQueryHandler : IRequestHandler<GetUnitsQuery, List<UnitDto>
     public async Task<List<UnitDto>> Handle(GetUnitsQuery request, CancellationToken cancellationToken)
     {
         var result = await _context.Units
-            .Include(x => x.Sources).Include(x => x.Task)
+            .Include(x => x.Sources)
+            .Include(x => x.Tasks)
             .Where(x => x.LessonId == request.LessonId)
             .OrderBy(x => x.SortOrder)
             .ProjectTo<UnitDto>(_mapper.ConfigurationProvider)

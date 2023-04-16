@@ -1,7 +1,6 @@
 ﻿using Domain.LessonBoundaryModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Infrastructure.Configuration;
 
@@ -46,17 +45,45 @@ public class UnitModelConfiguration : IEntityTypeConfiguration<Unit>
         builder.Property(x => x.Title).HasMaxLength(256).IsRequired();
         builder.Property(x => x.SortOrder);
 
-        builder.OwnsOne(x => x.Task);
         builder.OwnsMany(u => u.Sources, s =>
         {
             s.HasKey(x => x.Id);
             s.Property(x => x.Id);
 
+            s.Property(x => x.Type).HasDefaultValue(SourceType.Text);
             s.WithOwner().HasForeignKey(s => s.UnitId);
             s.Property(x => x.UnitId);
             s.Property(x => x.Content).HasMaxLength(4096).IsRequired();
         });
 
         builder.HasOne(u => u.Lesson).WithMany(l => l.Units).HasForeignKey(u => u.LessonId);
+    }
+}
+
+public class UnitTaskModelConfiguration : IEntityTypeConfiguration<UnitTask>
+{
+    public void Configure(EntityTypeBuilder<UnitTask> builder)
+    {
+        builder.HasKey(x => x.Id);
+
+        builder.Property(x => x.Id);
+        builder.Property(x => x.Title).HasMaxLength(256).IsRequired();
+        builder.Property(x => x.ImageUrl);
+        builder.Property(x => x.SortOrder);
+
+        builder.OwnsMany(t => t.Sources, s =>
+        {
+            s.HasKey(x => x.Id);
+            s.Property(x => x.Id);
+
+            s.Property(x => x.Type).IsRequired();
+            s.WithOwner().HasForeignKey(s => s.UnitTaskId);
+            s.Property(x => x.UnitTaskId);
+            s.Property(x => x.Key);
+            s.Property(x => x.Content).HasMaxLength(4096).IsRequired();
+            s.Property(x => x.Value).HasMaxLength(4096);
+        });
+
+        builder.HasOne(t => t.Unit).WithMany(u => u.Tasks).HasForeignKey(t => t.UnitId);
     }
 }

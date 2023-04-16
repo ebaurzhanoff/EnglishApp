@@ -55,6 +55,22 @@ public static class PresentSimpleUnitSources
     They are in the room. Они находятся в комнате.",
         SortOrder = 5
     };
+    public static readonly Source Source_ToBe_6 = new()
+    {
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.ToBe.Id,
+        Content = "Так же посмотрите это видео!",
+        SortOrder = 6,
+        Type = SourceType.Text
+    };
+    public static readonly Source Source_ToBe_7 = new()
+    {
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.ToBe.Id,
+        Content = "YlqRjy_Z3GQ",
+        SortOrder = 7,
+        Type = SourceType.YouTubeVideoUrl
+    };
     #endregion
 
     #region DoDoes

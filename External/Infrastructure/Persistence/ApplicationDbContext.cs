@@ -5,6 +5,7 @@ using Infrastructure.Data;
 using Infrastructure.Data.Groups;
 using Infrastructure.Data.Lessons;
 using Infrastructure.Data.Units;
+using Infrastructure.Data.UnitTasks;
 using Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,11 +32,23 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         builder.ApplyConfigurationsFromAssembly(typeof(AssemblyReference).Assembly)
             .SeedEntity<Course>(typeof(Courses))
             .SeedEntity<Group>(typeof(GrammarGroups))
+            .SeedEntity<Group>(typeof(ListeningGroups))
+            .SeedEntity<Group>(typeof(SpeakingGroups))
+            .SeedEntity<Group>(typeof(VocabularyGroups))
             .SeedEntity<Level>(typeof(Levels))
             .SeedEntity<Lesson>(typeof(GrammarLessons))
+            .SeedEntity<Lesson>(typeof(ListeningLessons))
+            .SeedEntity<Lesson>(typeof(SpeakingLessons))
+            .SeedEntity<Lesson>(typeof(VocabularyLessons))
+
             .SeedEntity<Unit>(typeof(GrammarUnits))
+            .SeedEntity<UnitTask>(typeof(GrammarUnitTasks))
             .SeedUnitOwnsMany(typeof(PresentSimpleUnitSources))
             .SeedUnitOwnsMany(typeof(PresentContinuousUnitSources))
+            .SeedUnitTaskOwnsMany(typeof(PresentSimpleUnitTaskSources))
+
+            .SeedEntity<Unit>(typeof(FamilyUnits))
+            .SeedUnitOwnsMany(typeof(FamilyUnitSources))
             ;
     }
 }

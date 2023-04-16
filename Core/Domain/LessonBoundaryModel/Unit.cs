@@ -8,6 +8,6 @@ public class Unit : Entity, ISortable
     public int SortOrder { get; set; }
     public long LessonId { get; set; }
     public Lesson Lesson { get; set; } = null!;
-    public UnitTask? Task { get; set; }
-    public List<Source> Sources { get; set; }
+    public List<UnitTask>? Tasks { get; set; }
+    public List<Source>? Sources { get; set; }
 }
