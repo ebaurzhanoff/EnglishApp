@@ -27,11 +27,12 @@ using (var scope = app.Services.CreateScope())
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseCors("CORS_Policy");
+app.UseHttpsRedirection();
 app.UseForwardedHeaders();
 app.UseSwagger();
 app.UseSwaggerUI();
-app.UseHttpsRedirection();
-app.MapControllers();
+app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapControllers();
 app.Run();

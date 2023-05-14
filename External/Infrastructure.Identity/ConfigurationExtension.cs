@@ -79,6 +79,10 @@ public static class ConfigurationExtension
             };
             o.Events = new JwtBearerEvents()
             {
+                OnMessageReceived = context =>
+                {
+                    return Task.CompletedTask;
+                },
                 OnAuthenticationFailed = c =>
                 {
                     c.Response.OnStarting(async () =>
