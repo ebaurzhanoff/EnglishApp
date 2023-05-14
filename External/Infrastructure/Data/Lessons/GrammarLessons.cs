@@ -23,4 +23,22 @@ public static class GrammarLessons
         SortOrder = 2,
         Description = $"Present Continuous {nameof(Lesson)} - {Levels.A1.Code}"
     };
+    public static readonly Lesson Lesson_3 = new()
+    {
+        Id = 6,
+        Title = nameof(Lesson),
+        GroupToken = $"{Courses.Grammar.Name}_{nameof(GrammarGroups.PresentSimpleOrPresentContinuous)}",
+        LevelId = Levels.A1.Id,
+        SortOrder = 3,
+        Description = $"Present Simple or Present Continuous {nameof(Lesson)} - {Levels.A1.Code}"
+    };
+    public static readonly Lesson Lesson_4 = new()
+    {
+        Id = 7,
+        Title = nameof(Lesson),
+        GroupToken = $"{Courses.Grammar.Name}_{nameof(GrammarGroups.PastSimple)}",
+        LevelId = Levels.A1.Id,
+        SortOrder = 4,
+        Description = $"Past Simple {nameof(Lesson)} - {Levels.A1.Code}"
+    };
 }

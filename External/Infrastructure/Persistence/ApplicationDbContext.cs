@@ -45,6 +45,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             .SeedEntity<UnitTask>(typeof(GrammarUnitTasks))
             .SeedUnitOwnsMany(typeof(PresentSimpleUnitSources))
             .SeedUnitOwnsMany(typeof(PresentContinuousUnitSources))
+            .SeedUnitOwnsMany(typeof(PresentSimpleOrPresentContinuousUnitSources))
+            .SeedUnitOwnsMany(typeof(PastSimpleUnitSources))
             .SeedUnitTaskOwnsMany(typeof(PresentSimpleUnitTaskSources))
 
             .SeedEntity<Unit>(typeof(FamilyUnits))

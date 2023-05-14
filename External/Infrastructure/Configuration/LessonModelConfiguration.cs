@@ -80,7 +80,7 @@ public class UnitTaskModelConfiguration : IEntityTypeConfiguration<UnitTask>
             s.WithOwner().HasForeignKey(s => s.UnitTaskId);
             s.Property(x => x.UnitTaskId);
             s.Property(x => x.Key);
-            s.Property(x => x.Content).HasMaxLength(4096).IsRequired();
+            s.Property(x => x.Content).IsRequired();
             s.Property(x => x.Value).HasMaxLength(4096);
         });
 

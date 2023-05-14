@@ -15,5 +15,7 @@ public class UnitTaskSource : EntityGuid, ISortable
 public enum TaskSourceType
 {
     MissedWord,
-    NegativeForm
+    NegativeForm,
+    Text,
+    Base64Image
 }

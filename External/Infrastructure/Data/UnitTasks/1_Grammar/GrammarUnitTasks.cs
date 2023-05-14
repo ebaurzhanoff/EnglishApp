@@ -5,6 +5,7 @@ namespace Infrastructure.Data.UnitTasks;
 
 public static class GrammarUnitTasks
 {
+    #region Present simple
     public static readonly UnitTask ToBe_1 = new()
     {
         Id = 1,
@@ -26,4 +27,5 @@ public static class GrammarUnitTasks
         SortOrder = 3,
         UnitId = GrammarUnits.ToBe.Id,
     };
+    #endregion
 }

@@ -36,9 +36,9 @@ public class AccountController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IResult> Login(LoginRequest request)
     {
-        var respone = await _accountService.LoginAsync(request);
+        var response = await _accountService.LoginAsync(request);
 
-        return respone.Succeeded ? TypedResults.Ok(respone) : TypedResults.BadRequest(respone);
+        return response.Succeeded ? TypedResults.Ok(response) : TypedResults.BadRequest(response);
     }
 
     [HttpPost, AllowAnonymous]
@@ -49,7 +49,7 @@ public class AccountController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IResult> Register(RegisterRequest request)
     {
-        var respone = await _accountService.RegisterAsync(request);
-        return respone.Succeeded ? TypedResults.Created("register", respone) : TypedResults.BadRequest(respone);
+        var response = await _accountService.RegisterAsync(request);
+        return response.Succeeded ? TypedResults.Created("register", response) : TypedResults.BadRequest(response);
     }
 }

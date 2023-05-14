@@ -89,8 +89,9 @@ public class AccountService : IAccountService
             var user = new ApplicationUser
             {
                 Email = request.Email,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
+                IsDeleted = false,
+                FirstName = "FirstName",
+                LastName = "LastName",
                 UserName = request.UserName,
             };
 

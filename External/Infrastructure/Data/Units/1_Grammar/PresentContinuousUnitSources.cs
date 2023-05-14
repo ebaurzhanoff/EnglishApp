@@ -133,5 +133,24 @@ public static class PresentContinuousUnitSources
 	Здесь в этом предложении соответсвенно показано, что встреча запланирована!",
 		SortOrder = 6
 	};
-	#endregion
+    #endregion
+
+    #region Video
+    public static readonly Source Source_PresentContinuousVideo_1 = new()
+    {
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.PresentContinuousVideo.Id,
+        Type = SourceType.Text,
+        Content = "Present Continuous Video",
+        SortOrder = 1
+    };
+    public static readonly Source Source_PresentContinuousVideo_2 = new()
+    {
+        Id = Guid.NewGuid(),
+        UnitId = GrammarUnits.PresentContinuousVideo.Id,
+		Type = SourceType.YouTubeVideoUrl,
+        Content = "CM6ZCrms5qw",
+        SortOrder = 2
+    };
+    #endregion
 }
