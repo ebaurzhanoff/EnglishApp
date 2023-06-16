@@ -23,7 +23,7 @@ public static class DefaultAdmin
             var existUser = await userManager.FindByEmailAsync(adminUser.Email);
             if (existUser == null)
             {
-                await userManager.CreateAsync(adminUser, "Pa$$word!123");
+                await userManager.CreateAsync(adminUser, "Password");
                 await userManager.AddToRoleAsync(adminUser, Roles.Admin.ToString());
             }
         }
