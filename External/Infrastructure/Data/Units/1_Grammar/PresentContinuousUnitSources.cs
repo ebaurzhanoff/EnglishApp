@@ -30,9 +30,9 @@ public static class PresentContinuousUnitSources
 
 	2.	Формула: He/She/It is + глагол-ing.
 		Примеры: 
-			He is smiling — Он улыбается.
-			She is dancing — Она танцует.
-			It is shining — Оно светит.
+			He is smiling — Ол күледі.
+			She is dancing — Ол билейді.
+			It is shining — Ол жарқырайды.
 
 	3.	Формула: We/You/They are + глагол-ing.
 		Примеры: 
@@ -57,10 +57,10 @@ public static class PresentContinuousUnitSources
 	{
 		Id = Guid.NewGuid(),
 		UnitId = GrammarUnits.PresentContinuousRules.Id,
-		Content = @"Отрицательные предложения
+		Content = @"Болымсыз сөйлемдер
 
 	1.	Формула: I am not + глагол-ing.
-		Пример: I am not singing - Я не пою.
+		Пример: I am not singing - Мен ән айтпаймын.
 
 	2.	Формула: He/She/It is not + глагол-ing
 		Примеры:
