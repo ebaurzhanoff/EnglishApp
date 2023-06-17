@@ -30,7 +30,7 @@ public static class PresentSimpleUnitSources
     {
         Id = Guid.NewGuid(),
         UnitId = GrammarUnits.ToBe.Id,
-        Content = "енді кәзір өолдануын қарастырып көрейік. ",
+        Content = "енді кәзір қолдануын қарастырып көрейік. ",
         SortOrder = 3
     };
     public static readonly Source Source_ToBe_4 = new()
